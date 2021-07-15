@@ -49,8 +49,7 @@ export default abstract class BridgeCommand extends Command {
       }
     }
 
-    const content = await fs.promises.readFile(this.flags.config, 'utf8');
-    this._config = new Config(YAML.parse(content));
+    this._config = new Config(await loadConfigRaw(this.flags.config));
 
     this._logger = new Logger({
       minLevel: this.conf.global.logLevel as TLogLevelName
@@ -67,4 +66,9 @@ async function findConfigs(path: string): Promise<string[]> {
     if (fs.existsSync(config)) result.push(config);
   });
   return result;
+}
+
+export async function loadConfigRaw(path: string): Promise<any> {
+  const content = await fs.promises.readFile(path, 'utf8');
+  return YAML.parse(content);
 }
