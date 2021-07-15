@@ -1,10 +1,12 @@
 {
-  "name": "bridge",
-  "description": "CLI to manage and verify the bridge between NEAR and Ethereum",
+  "name": "bridge-cli",
+  "description": "CLI to interact with Rainbow Bridge and connectors",
   "version": "0.0.1",
   "author": "Marcelo Fornet @mfornet",
-  "bin": "./bin/run",
-  "bugs": "https://github.com/mfornet/bridge/issues",
+  "bin": {
+    "bridge": "./bin/run"
+  },
+  "bugs": "https://github.com/mfornet/bridge-cli/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -49,7 +51,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/mfornet/bridge",
+  "homepage": "https://github.com/mfornet/bridge-cli",
   "keywords": [
     "oclif"
   ],
@@ -62,7 +64,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "mfornet/bridge",
+  "repository": "mfornet/bridge-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",

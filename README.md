@@ -1,5 +1,4 @@
-bridge
-======
+# bridge
 
 CLI to manage and verify the bridge between NEAR and Ethereum
 
@@ -9,11 +8,16 @@ CLI to manage and verify the bridge between NEAR and Ethereum
 [![License](https://img.shields.io/npm/l/bridge.svg)](https://github.com/mfornet/bridge/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [bridge](#bridge)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g bridge
 $ bridge COMMAND
@@ -25,31 +29,16 @@ USAGE
   $ bridge COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`bridge hello [FILE]`](#bridge-hello-file)
-* [`bridge help [COMMAND]`](#bridge-help-command)
 
-## `bridge hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ bridge hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ bridge hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src/commands/hello.ts](https://github.com/mfornet/bridge/blob/v0.0.1/src/commands/hello.ts)_
+- [`bridge help [COMMAND]`](#bridge-help-command)
+- [`bridge monitor [BRIDGEID]`](#bridge-monitor-bridgeid)
+- [`bridge z:generate-config FILE`](#bridge-zgenerate-config-file)
 
 ## `bridge help [COMMAND]`
 
@@ -67,4 +56,36 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+
+## `bridge monitor [BRIDGEID]`
+
+Expose bridge information through prometheus metrics
+
+```
+USAGE
+  $ bridge monitor [BRIDGEID]
+
+OPTIONS
+  -h, --help       show CLI help
+  -l, --list       List information tracked
+  --config=config  Path to config file
+```
+
+_See code: [src/commands/monitor.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.1/src/commands/monitor.ts)_
+
+## `bridge z:generate-config FILE`
+
+Generate config/base.ts file from yml file automatically
+
+```
+USAGE
+  $ bridge z:generate-config FILE
+
+OPTIONS
+  -h, --help       show CLI help
+  --config=config  Path to config file
+```
+
+_See code: [src/commands/z/generate-config.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.1/src/commands/z/generate-config.ts)_
+
 <!-- commandsstop -->
