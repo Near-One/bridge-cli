@@ -1,5 +1,5 @@
 {
-  "name": "bridge-cli",
+  "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
   "version": "0.0.1",
   "author": "Marcelo Fornet @mfornet",
@@ -11,6 +11,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "@types/bn.js": "^5.1.0",
     "ethers": "^5.4.1",
     "prom-client": "^13.1.0",
     "reflect-metadata": "^0.1.13",
