@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as YAML from 'yaml';
 import { join } from 'path';
 import { homedir } from 'os';
-import { Logger } from 'tslog';
+import { Logger, TLogLevelName } from 'tslog';
 import { Config } from './config';
 
 export default abstract class BridgeCommand extends Command {
@@ -31,8 +31,6 @@ export default abstract class BridgeCommand extends Command {
   }
 
   async init(): Promise<void> {
-    this._logger = new Logger();
-
     // @ts-ignore
     const { args, flags } = this.parse(this.constructor);
 
@@ -53,6 +51,10 @@ export default abstract class BridgeCommand extends Command {
 
     const content = await fs.promises.readFile(this.flags.config, 'utf8');
     this._config = new Config(YAML.parse(content));
+
+    this._logger = new Logger({
+      minLevel: this.conf.global.logLevel as TLogLevelName
+    });
     this.logger.info('Config file', this.conf.config);
   }
 }

@@ -7,6 +7,8 @@ import { Config } from '../config';
 import { Logger } from 'tslog';
 import { sleep } from '../utils/common';
 import * as nearAPI from 'near-api-js';
+import { AccountId } from '../types';
+import { ethers } from 'ethers';
 
 export default class Monitor extends BridgeCommand {
   static description = 'Expose bridge information through prometheus metrics';
@@ -44,14 +46,19 @@ async function setup(config: Config, logger: Logger) {
 
   // [1] Register in this array all metrics to track.
   // See in [2] how to add a new metric.
-  const builder = [nearChainBlock];
+
+  const builder = [
+    nearChainBlock,
+    nearAccountInfo(config.contracts.near.client, 'eth_client_on_near')
+  ];
+
   const updates = builder.map((builder) => builder(options));
 
   logger.info(`Metrics exposed at http://localhost:${port}`);
 
   /* eslint-disable no-await-in-loop */
   for (;;) {
-    logger.debug('Fetch on-chain information');
+    logger.info('Fetch on-chain information');
 
     const promises: Promise<void>[] = [];
 
@@ -83,6 +90,37 @@ function nearChainBlock(opt: Options): () => Promise<void> {
       finality: 'final'
     });
     nearChainBlock.set(block.header.height);
+  };
+}
+
+function nearAccountInfo(
+  accountId: AccountId,
+  name: string
+): (opt: Options) => () => Promise<void> {
+  const nearYocto2Nano = ethers.BigNumber.from(10).pow(15);
+
+  return (opt: Options): (() => Promise<void>) => {
+    const accountBalance = opt.prometheus.gauge(
+      `${name}_nano_near`,
+      'NEAR chain height'
+    );
+
+    const accountStorage = opt.prometheus.gauge(
+      `${name}_bytes`,
+      'NEAR chain height'
+    );
+
+    return async () => {
+      const account = await opt.near.account(accountId.toString());
+      const view = await account.state();
+
+      const nanoNear = ethers.BigNumber.from(view.amount)
+        .div(nearYocto2Nano)
+        .toNumber();
+
+      accountBalance.set(nanoNear);
+      accountStorage.set(view.storage_usage);
+    };
   };
 }
 
