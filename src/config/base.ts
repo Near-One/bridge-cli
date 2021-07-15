@@ -1,4 +1,8 @@
-// This code is generated automatically.
+/// This code was generated automatically.
+/// Do not change it manually
+///
+/// To generate this code again use:
+/// `bridge z:generate-config ~/.rainbow/ropsten/config.yml > config/base.ts`
 import * as assert from 'assert';
 
 class BaseConfig {

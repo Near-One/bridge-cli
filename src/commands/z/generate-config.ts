@@ -46,7 +46,8 @@ function toCamelCase(input: string) {
 }
 
 export default class GenerateConfig extends BridgeCommand {
-  static description = 'Generate config.ts file automatically from yml file';
+  static description =
+    'Generate config/base.ts file from yml file automatically';
 
   static flags = {
     ...BridgeCommand.flags
@@ -56,13 +57,9 @@ export default class GenerateConfig extends BridgeCommand {
 
   async run(): Promise<void> {
     const content = await loadConfigRaw(this.args.file);
-
     const builder = new StringBuilder();
-
     generate(content, builder);
-
     sys.write(builder.value);
-    // console.log(builder.value);
   }
 }
 
@@ -73,7 +70,11 @@ function generate(
   writePrefix = true
 ) {
   if (writePrefix) {
-    builder.write(`// This code is generated automatically.
+    builder.write(`/// This code was generated automatically.
+/// DO NOT EDIT
+///
+/// Regenerate it with:
+/// bridge z:generate-config ~/.rainbow/ropsten/config.yml > config/base.ts
 import * as assert from 'assert';
 
 class BaseConfig {

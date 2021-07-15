@@ -7,8 +7,9 @@ import { Config } from '../config';
 import { Logger } from 'tslog';
 import { sleep } from '../utils/common';
 import * as nearAPI from 'near-api-js';
-import { AccountId } from '../types';
+import { AccountId, parseAccountId } from '../types';
 import { ethers } from 'ethers';
+import { CodeResult } from 'near-api-js/lib/providers/provider';
 
 export default class Monitor extends BridgeCommand {
   static description = 'Expose bridge information through prometheus metrics';
@@ -31,25 +32,29 @@ class Options {
 
   near: nearAPI.Near;
 
-  constructor(prometheus: HttpPrometheus, near: nearAPI.Near) {
+  config: Config;
+
+  constructor(prometheus: HttpPrometheus, near: nearAPI.Near, config: Config) {
     this.prometheus = prometheus;
     this.near = near;
+    this.config = config;
   }
 }
 
 async function setup(config: Config, logger: Logger) {
+  // Build options
   const port = config.monitor.port;
-
   const prometheus = new HttpPrometheus(port, 'bridge_monitor_');
   const near = await config.NEAR;
-  const options = new Options(prometheus, near);
+  const options = new Options(prometheus, near, config);
 
-  // [1] Register in this array all metrics to track.
-  // See in [2] how to add a new metric.
-
+  // [1] Register metrics to track in this array
   const builder = [
     nearChainBlock,
-    nearAccountInfo(config.contracts.near.client, 'eth_client_on_near')
+    nearAccountInfo(config.contracts.near.client, 'eth_client_on_near'),
+    nearAccountInfo(config.eth2near.relayer, 'eth2near_relayer'),
+    ethClientOnNear,
+    ethChainBlock
   ];
 
   const updates = builder.map((builder) => builder(options));
@@ -58,7 +63,7 @@ async function setup(config: Config, logger: Logger) {
 
   /* eslint-disable no-await-in-loop */
   for (;;) {
-    logger.info('Fetch on-chain information');
+    logger.info('Fetch information');
 
     const promises: Promise<void>[] = [];
 
@@ -124,6 +129,45 @@ function nearAccountInfo(
   };
 }
 
+function ethClientOnNear(opt: Options): () => Promise<void> {
+  const ethClientOnNearHeight = opt.prometheus.gauge(
+    'eth_client_on_near_height',
+    'Height of Ethereum Client on NEAR'
+  );
+
+  return async () => {
+    const target = parseAccountId(opt.config.contracts.near.client).unwrap();
+
+    // TODO: Use BorshContract interface.
+    /* eslint-disable camelcase */
+    const result = (await opt.near.connection.provider.query({
+      request_type: 'call_function',
+      account_id: target,
+      method_name: 'last_block_number',
+      args_base64: Buffer.from('').toString('base64'),
+      finality: 'optimistic'
+    })) as CodeResult;
+    /* eslint-enable camelcase */
+
+    result.result.reverse();
+    const height = ethers.BigNumber.from(result.result).toNumber();
+
+    ethClientOnNearHeight.set(height);
+  };
+}
+
+function ethChainBlock(opt: Options): () => Promise<void> {
+  const ethChainBlock = opt.prometheus.gauge(
+    'eth_chain_block',
+    'Ethereum chain height'
+  );
+
+  return async () => {
+    const block = await opt.config.eth.getBlock('latest');
+    ethChainBlock.set(block.number);
+  };
+}
+
 // const nearClientBlockTrusted = prometheus.gauge(
 //   'near_client_block_trusted',
 //   'last trusted block in NEAR Light Client in Ethereum'
@@ -144,9 +188,6 @@ function nearAccountInfo(
 //   'Ethereum chain height'
 // );
 
-// Near accounts:
-//    Client
-//    Eth2Near Relayer
 // Ethereum accounts:
 //    Relayer
 //    Watchdog

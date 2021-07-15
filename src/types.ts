@@ -7,7 +7,7 @@ function isValidAccountId(_accountId: string) {
 
 export type AccountId = string;
 
-export function parse(accountId: string): Result<AccountId, string> {
+export function parseAccountId(accountId: string): Result<AccountId, string> {
   switch (isValidAccountId(accountId)) {
     case true:
       return Ok(accountId);
