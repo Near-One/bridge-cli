@@ -1,18 +1,20 @@
 {
   "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Marcelo Fornet @mfornet",
   "bin": {
     "bridge": "./bin/run"
   },
   "bugs": "https://github.com/mfornet/bridge-cli/issues",
   "dependencies": {
+    "@hqoss/monads": "^0.5.0",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
     "@types/bn.js": "^5.1.0",
     "ethers": "^5.4.1",
+    "near-api-js": "^0.42.0",
     "prom-client": "^13.1.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "^1",
@@ -21,7 +23,6 @@
     "yaml": "^1.10.2"
   },
   "devDependencies": {
-    "@hqoss/monads": "^0.5.0",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@types/chai": "^4",
@@ -37,7 +38,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "globby": "^10",
     "mocha": "^5",
-    "near-api-js": "^0.42.0",
     "nyc": "^14",
     "prettier": "^2.3.2",
     "ts-node": "^8",

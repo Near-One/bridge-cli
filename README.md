@@ -21,7 +21,7 @@ $ npm install -g rainbow-bridge
 $ bridge COMMAND
 running command...
 $ bridge (-v|--version|version)
-rainbow-bridge/0.0.1 darwin-x64 node-v14.16.1
+rainbow-bridge/0.0.2 darwin-x64 node-v14.16.1
 $ bridge --help [COMMAND]
 USAGE
   $ bridge COMMAND
@@ -67,7 +67,7 @@ OPTIONS
   --config=config  Path to config file
 ```
 
-_See code: [src/commands/monitor.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.1/src/commands/monitor.ts)_
+_See code: [src/commands/monitor.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.2/src/commands/monitor.ts)_
 
 ## `bridge z:generate-config FILE`
 
@@ -82,5 +82,5 @@ OPTIONS
   --config=config  Path to config file
 ```
 
-_See code: [src/commands/z/generate-config.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.1/src/commands/z/generate-config.ts)_
+_See code: [src/commands/z/generate-config.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.2/src/commands/z/generate-config.ts)_
 <!-- commandsstop -->
