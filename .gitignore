@@ -1,0 +1,18 @@
+*-debug.log
+*-error.log
+/.nyc_output
+/dist
+/lib
+/package-lock.json
+/tmp
+node_modules
+
+/.yarn/*
+!/.yarn/releases
+!/.yarn/plugins
+!/.yarn/sdks
+
+# Not using zero installs
+# Documentation here: https://yarnpkg.com/features/zero-installs
+#!/.yarn/cache
+/.pnp.*

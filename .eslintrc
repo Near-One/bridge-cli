@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "oclif",
+    "oclif-typescript",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 1,
+    "no-warning-comments": "off",
+    "new-cap": "off",
+    "prettier/prettier": 2,
+    "@typescript-eslint/ban-ts-comment": "off"
+  }
+}
