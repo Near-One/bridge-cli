@@ -1,7 +1,7 @@
 {
   "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Marcelo Fornet @mfornet",
   "bin": {
     "bridge": "./bin/run"
@@ -50,11 +50,17 @@
     "/bin",
     "/lib",
     "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
+    "/oclif.manifest.json",
+    "/static"
   ],
   "homepage": "https://github.com/mfornet/bridge-cli",
   "keywords": [
-    "oclif"
+    "cli",
+    "rainbow",
+    "bridge",
+    "near",
+    "ethereum",
+    "blockchain"
   ],
   "license": "MIT",
   "main": "lib/index.js",

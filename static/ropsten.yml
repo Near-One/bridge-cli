@@ -1,0 +1,39 @@
+global:
+    # Id of the bridge. This is used to identify the config file, so any name can be used.
+    bridge_id: ropsten
+    # URL of the ethereum RPC endpoint.
+    # Consider some options like https://www.alchemy.com or https://infura.io or ganache for local networks
+    eth_node_url: http://localhost:9090
+    # URL of the NEAR RPC endpoint
+    near_node_url: https://rpc.testnet.near.org
+    # Log level from tslog https://tslog.js.org/#/?id=log-level
+    log_level: info
+
+contracts:
+    ethereum:
+        # Near Light Client implementation in Ethereum
+        client: "0x4018820687bfbf222fabd2ee014f6dc325c64084"
+        # Prover for receipts created in NEAR
+        prover: "0xb3df48b0ea3e91b43226fb3c5eb335b7e3d76faa"
+
+    near:
+        # Ethereum Light Client implementation in NEAR
+        client: t5.client.ropsten.testnet
+        # Prover for events created in Ethereum
+        prover: prover.ropsten.testnet
+
+near2eth:
+    # Address of the account used to relay NEAR blocks to Ethereum
+    relayer: "0x4b8a079ca3ceaf2bdac06925c221c03903c7de4b"
+    # Address of the account used to submit challenges for invalid blocks
+    watchdog: "0x00a94d42da9c05453827600b52623675686dedb0"
+
+eth2near:
+    # Account use to relay blocks from Ethereum to NEAR
+    relayer: relayer.ropsten.testnet
+
+monitor:
+    # Port to expose prometheus metrics
+    port: 8005
+    # Time to wait between RPC queries to fetch monitor information (in milliseconds)
+    timeout: 10000

@@ -53,7 +53,7 @@ export default class GenerateConfig extends BridgeCommand {
     ...BridgeCommand.flags
   };
 
-  static args = [{ name: 'file', required: true }];
+  static args = [{ name: 'file', required: true, default: '' }];
 
   async run(): Promise<void> {
     const content = await loadConfigRaw(this.args.file);

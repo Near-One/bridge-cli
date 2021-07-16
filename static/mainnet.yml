@@ -1,0 +1,39 @@
+global:
+    # Id of the bridge. This is used to identify the config file, so any name can be used.
+    bridge_id: mainnet
+    # URL of the ethereum RPC endpoint.
+    # Consider some options like https://www.alchemy.com or https://infura.io or ganache for local networks
+    eth_node_url: http://localhost:9090
+    # URL of the NEAR RPC endpoint
+    near_node_url: https://rpc.mainnet.near.org
+    # Log level from tslog https://tslog.js.org/#/?id=log-level
+    log_level: info
+
+contracts:
+    ethereum:
+        # Near Light Client implementation in Ethereum
+        client: "0x0151568af92125fb289f1dd81d9d8f7484efc362"
+        # Prover for receipts created in NEAR
+        prover: "0x051ad3f020274910065dcb421629cd2e6e5b46c4"
+
+    near:
+        # Ethereum Light Client implementation in NEAR
+        client: client.bridge.near
+        # Prover for events created in Ethereum
+        prover: prover.bridge.near
+
+near2eth:
+    # Address of the account used to relay NEAR blocks to Ethereum
+    relayer: "0x015e634C7C1311A9034220c28d3D12b7f710a3b1"
+    # Address of the account used to submit challenges for invalid blocks
+    watchdog: "0xcc7f3dffa25147f60b59504f0f745c57af2e365b"
+
+eth2near:
+    # Account use to relay blocks from Ethereum to NEAR
+    relayer: relayer.bridge.near
+
+monitor:
+    # Port to expose prometheus metrics
+    port: 8005
+    # Time to wait between RPC queries to fetch monitor information (in milliseconds)
+    timeout: 10000
