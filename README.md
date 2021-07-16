@@ -21,7 +21,7 @@ $ npm install -g rainbow-bridge
 $ bridge COMMAND
 running command...
 $ bridge (-v|--version|version)
-rainbow-bridge/0.0.3 darwin-x64 node-v14.16.1
+rainbow-bridge/0.0.4 darwin-x64 node-v14.16.1
 $ bridge --help [COMMAND]
 USAGE
   $ bridge COMMAND
@@ -33,8 +33,8 @@ USAGE
 
 <!-- commands -->
 * [`bridge help [COMMAND]`](#bridge-help-command)
+* [`bridge init [BRIDGEID]`](#bridge-init-bridgeid)
 * [`bridge monitor [BRIDGEID]`](#bridge-monitor-bridgeid)
-* [`bridge populate [BRIDGEID]`](#bridge-populate-bridgeid)
 * [`bridge z:generate-config FILE`](#bridge-zgenerate-config-file)
 
 ## `bridge help [COMMAND]`
@@ -54,6 +54,23 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
+## `bridge init [BRIDGEID]`
+
+Create configuration files for active rainbow bridges
+
+```
+USAGE
+  $ bridge init [BRIDGEID]
+
+OPTIONS
+  -f, --force      Write configuration files, even if they already exists.
+  -h, --help       show CLI help
+  -s, --show       Display the configuration file without writing.
+  --config=config  Path to config file
+```
+
+_See code: [src/commands/init.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.4/src/commands/init.ts)_
+
 ## `bridge monitor [BRIDGEID]`
 
 Expose bridge information through prometheus metrics
@@ -68,24 +85,7 @@ OPTIONS
   --config=config  Path to config file
 ```
 
-_See code: [src/commands/monitor.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.3/src/commands/monitor.ts)_
-
-## `bridge populate [BRIDGEID]`
-
-Create configuration files for active rainbow bridges
-
-```
-USAGE
-  $ bridge populate [BRIDGEID]
-
-OPTIONS
-  -f, --force      Write configuration files, even if they already exists.
-  -h, --help       show CLI help
-  -s, --show       Display the configuration file without writing.
-  --config=config  Path to config file
-```
-
-_See code: [src/commands/populate.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.3/src/commands/populate.ts)_
+_See code: [src/commands/monitor.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.4/src/commands/monitor.ts)_
 
 ## `bridge z:generate-config FILE`
 
@@ -100,5 +100,5 @@ OPTIONS
   --config=config  Path to config file
 ```
 
-_See code: [src/commands/z/generate-config.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.3/src/commands/z/generate-config.ts)_
+_See code: [src/commands/z/generate-config.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.4/src/commands/z/generate-config.ts)_
 <!-- commandsstop -->

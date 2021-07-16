@@ -40,8 +40,11 @@ export default abstract class BridgeCommand extends Command {
     this.flags = flags;
 
     if (!(await this.loadConfig())) {
-      throw new Error('Configuration not loaded');
+      this._config = new Config(
+        await loadConfigRaw(join(staticDir(), 'ropsten.yml'))
+      );
     }
+
     if (this.conf === undefined) {
       this._logger = new Logger();
     } else {
@@ -64,7 +67,7 @@ export default abstract class BridgeCommand extends Command {
         initLog.warn(
           'No bridge configuration found. Create new configuration file using:'
         );
-        initLog.warn('bridge populate');
+        initLog.warn('bridge init');
         return false;
       }
       if (this.args.bridgeId === undefined) {
@@ -107,6 +110,10 @@ export default abstract class BridgeCommand extends Command {
 
 /// Find list with all valid configuration files.
 export async function findConfigs(path = CONFIG_PATH): Promise<string[]> {
+  if (!fs.existsSync(path)) {
+    return [];
+  }
+
   const result: string[] = [];
   (await fs.promises.readdir(path)).forEach((folder) => {
     const config = join(path, folder, 'config.yml');

@@ -11,7 +11,7 @@ import BridgeCommand, {
 } from '../base';
 import { Config } from '../config';
 
-export default class Populate extends BridgeCommand {
+export default class Init extends BridgeCommand {
   static description = 'Create configuration files for active rainbow bridges';
 
   static flags = {

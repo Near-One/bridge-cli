@@ -1,7 +1,7 @@
 {
   "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Marcelo Fornet @mfornet",
   "bin": {
     "bridge": "./bin/run"
