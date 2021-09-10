@@ -1,6 +1,10 @@
 global:
-    # Id of the bridge. This is used to identify the config file, so any name can be used.
+    # Id of the bridge. This is used to identify the config file.
     bridge_id: mainnet
+    # Version of the data. Changes on any modification to the data on this file. Follows semver.
+    version: 1.0.0
+    # Version of the layout of the configuration. Changes if new fields are added.
+    layout_version: 1
     # URL of the ethereum RPC endpoint.
     # Consider some options like https://www.alchemy.com or https://infura.io or ganache for local networks
     eth_node_url: http://localhost:9090

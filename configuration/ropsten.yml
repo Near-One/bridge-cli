@@ -1,10 +1,14 @@
 global:
-    # Id of the bridge. This is used to identify the config file, so any name can be used.
+    # Id of the bridge. This is used to identify the configuration
     bridge_id: ropsten
-    # URL of the ethereum RPC endpoint.
+    # Version of the data. Changes on any modification to the data on this file. Follows semver.
+    version: 1.0.0
+    # Version of the layout of the configuration. Changes if new fields are added.
+    layout_version: 1
+    # Ethereum RPC endpoint URL
     # Consider some options like https://www.alchemy.com or https://infura.io or ganache for local networks
     eth_node_url: http://localhost:9090
-    # URL of the NEAR RPC endpoint
+    # NEAR RPC endpoint URL
     near_node_url: https://rpc.testnet.near.org
     # Log level from tslog https://tslog.js.org/#/?id=log-level
     log_level: info
