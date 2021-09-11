@@ -5,7 +5,7 @@ CLI to manage and verify the bridge between NEAR and Ethereum
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/rainbow-bridge.svg)](https://npmjs.org/package/rainbow-bridge)
 [![Downloads/week](https://img.shields.io/npm/dw/rainbow-bridge.svg)](https://npmjs.org/package/rainbow-bridge)
-[![License](https://img.shields.io/npm/l/rainbow-bridge.svg)](https://github.com/mfornet/bridge/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/rainbow-bridge.svg)](https://github.com/aurora-is-near/bridge/blob/master/package.json)
 
 <!-- toc -->
 * [Rainbow Bridge CLI](#rainbow-bridge-cli)
@@ -33,8 +33,9 @@ USAGE
 
 <!-- commands -->
 * [`bridge help [COMMAND]`](#bridge-help-command)
-* [`bridge init [BRIDGEID]`](#bridge-init-bridgeid)
-* [`bridge monitor [BRIDGEID]`](#bridge-monitor-bridgeid)
+* [`bridge list`](#bridge-list)
+* [`bridge monitor`](#bridge-monitor)
+* [`bridge use BRIDGE_ID`](#bridge-use-bridge_id)
 * [`bridge z:generate-config FILE`](#bridge-zgenerate-config-file)
 
 ## `bridge help [COMMAND]`
@@ -54,38 +55,48 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
-## `bridge init [BRIDGEID]`
+## `bridge list`
 
-Create configuration files for active rainbow bridges
+List all bridges available
 
 ```
 USAGE
-  $ bridge init [BRIDGEID]
+  $ bridge list
 
 OPTIONS
-  -f, --force      Write configuration files, even if they already exists.
-  -h, --help       show CLI help
-  -s, --show       Display the configuration file without writing.
-  --config=config  Path to config file
+  -h, --help  show CLI help
 ```
 
-_See code: [src/commands/init.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.4/src/commands/init.ts)_
+_See code: [src/commands/list.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.4/src/commands/list.ts)_
 
-## `bridge monitor [BRIDGEID]`
+## `bridge monitor`
 
 Expose bridge information through prometheus metrics
 
 ```
 USAGE
-  $ bridge monitor [BRIDGEID]
+  $ bridge monitor
 
 OPTIONS
-  -h, --help       show CLI help
-  -l, --list       List information tracked
-  --config=config  Path to config file
+  -h, --help  show CLI help
+  -l, --list  List information tracked
 ```
 
-_See code: [src/commands/monitor.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.4/src/commands/monitor.ts)_
+_See code: [src/commands/monitor.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.4/src/commands/monitor.ts)_
+
+## `bridge use BRIDGE_ID`
+
+Select bridge to be used
+
+```
+USAGE
+  $ bridge use BRIDGE_ID
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/use.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.4/src/commands/use.ts)_
 
 ## `bridge z:generate-config FILE`
 
@@ -96,9 +107,8 @@ USAGE
   $ bridge z:generate-config FILE
 
 OPTIONS
-  -h, --help       show CLI help
-  --config=config  Path to config file
+  -h, --help  show CLI help
 ```
 
-_See code: [src/commands/z/generate-config.ts](https://github.com/mfornet/bridge-cli/blob/v0.0.4/src/commands/z/generate-config.ts)_
+_See code: [src/commands/z/generate-config.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.4/src/commands/z/generate-config.ts)_
 <!-- commandsstop -->

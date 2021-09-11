@@ -2,17 +2,18 @@
   "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
   "version": "0.0.4",
-  "author": "Marcelo Fornet @mfornet",
+  "author": "Aurora Labs @aurora-is-near",
   "bin": {
     "bridge": "./bin/run"
   },
-  "bugs": "https://github.com/mfornet/bridge-cli/issues",
+  "bugs": "https://github.com/aurora-is-near/bridge-cli/issues",
   "dependencies": {
     "@hqoss/monads": "^0.5.0",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
     "@types/bn.js": "^5.1.0",
+    "cross-fetch": "^3.1.4",
     "ethers": "^5.4.1",
     "near-api-js": "^0.42.0",
     "prom-client": "^13.1.0",
@@ -53,7 +54,7 @@
     "/oclif.manifest.json",
     "/static"
   ],
-  "homepage": "https://github.com/mfornet/bridge-cli",
+  "homepage": "https://github.com/aurora-is-near/bridge-cli",
   "keywords": [
     "cli",
     "rainbow",
@@ -71,7 +72,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "mfornet/bridge-cli",
+  "repository": "aurora-is-near/bridge-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",

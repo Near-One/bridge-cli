@@ -18,6 +18,7 @@
     "no-warning-comments": "off",
     "new-cap": "off",
     "prettier/prettier": 2,
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "max-depth": 5
   }
 }

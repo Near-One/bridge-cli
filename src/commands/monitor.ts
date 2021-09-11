@@ -1,7 +1,7 @@
 /// This file contains all metrics that are being tracked.
 /// To track new metrics read comment starting with [1] and [2]
 import { flags } from '@oclif/command';
-import BridgeCommand from '../base';
+import { BridgeCommand } from '../base';
 import HttpPrometheus from '../utils/http-prometheus';
 import { Config } from '../config';
 import { Logger } from 'tslog';

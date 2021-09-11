@@ -1,5 +1,6 @@
 import { sys } from 'typescript';
-import BridgeCommand, { loadConfigRaw } from '../../base';
+import { BridgeCommand } from '../../base';
+import { Config } from '../../config';
 
 class StringBuilder {
   data: string[];
@@ -53,10 +54,13 @@ export default class GenerateConfig extends BridgeCommand {
     ...BridgeCommand.flags
   };
 
-  static args = [{ name: 'file', required: true, default: '' }];
+  static args = [
+    ...BridgeCommand.args,
+    { name: 'file', required: true, default: '' }
+  ];
 
   async run(): Promise<void> {
-    const content = await loadConfigRaw(this.args.file);
+    const content = await Config.loadConfigRaw(this.args.file);
     const builder = new StringBuilder();
     generate(content, builder);
     sys.write(builder.value);
