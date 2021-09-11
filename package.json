@@ -12,6 +12,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "@tiagonapoli/oclif-plugin-spaced-commands": "tiagonapoli/oclif-plugin-spaced-commands",
     "@types/bn.js": "^5.1.0",
     "cross-fetch": "^3.1.4",
     "ethers": "^5.4.1",
@@ -68,8 +69,10 @@
   "oclif": {
     "commands": "./lib/commands",
     "bin": "bridge",
+    "usesSpacedCommands": true,
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@tiagonapoli/oclif-plugin-spaced-commands"
     ]
   },
   "repository": "aurora-is-near/bridge-cli",

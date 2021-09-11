@@ -607,7 +607,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oclif/command@npm:^1, @oclif/command@npm:^1.5.20, @oclif/command@npm:^1.6.0, @oclif/command@npm:^1.8.0":
+"@oclif/command@npm:^1, @oclif/command@npm:^1.0.0, @oclif/command@npm:^1.5.20, @oclif/command@npm:^1.6.0, @oclif/command@npm:^1.8.0":
   version: 1.8.0
   resolution: "@oclif/command@npm:1.8.0"
   dependencies:
@@ -623,7 +623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oclif/config@npm:^1, @oclif/config@npm:^1.15.1, @oclif/config@npm:^1.17.0":
+"@oclif/config@npm:^1, @oclif/config@npm:^1.0.0, @oclif/config@npm:^1.15.1, @oclif/config@npm:^1.17.0":
   version: 1.17.0
   resolution: "@oclif/config@npm:1.17.0"
   dependencies:
@@ -744,6 +744,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tiagonapoli/oclif-plugin-spaced-commands@tiagonapoli/oclif-plugin-spaced-commands":
+  version: 1.0.1
+  resolution: "@tiagonapoli/oclif-plugin-spaced-commands@https://github.com/tiagonapoli/oclif-plugin-spaced-commands.git#commit=424cbeb64b03f50c6492dbb4b045d178ba4a0e27"
+  dependencies:
+    "@oclif/command": ^1.0.0
+    "@oclif/config": ^1.0.0
+    "@oclif/errors": ^1.2.2
+    "@types/treeify": ^1.0.0
+    chalk: ^2.4.1
+    indent-string: ^3.2.0
+    strip-ansi: ^5.0.0
+    treeify: ^1.1.0
+    tslib: ^1.0.0
+    wrap-ansi: ^4.0.0
+  checksum: 1d0b0fbace5e74e6c251cd0dd68cbe19e0dd68af4b468a654572e044d5cb654291c78238dfc42a0a19eb0fcf59e884d5bdeb463fe21aef015e45534fef151d92
+  languageName: node
+  linkType: hard
+
 "@types/bn.js@npm:^4.11.5":
   version: 4.11.6
   resolution: "@types/bn.js@npm:4.11.6"
@@ -834,6 +852,13 @@ __metadata:
   dependencies:
     "@sinonjs/fake-timers": ^7.1.0
   checksum: 44d149b0ba4ebfbadd7452e31edb35aab782d74bb542a808e5b0cc72f40fd2db6b4179bb97a79d5e2dc1b870823a395cd21349037a7af336810c1662ee9f076f
+  languageName: node
+  linkType: hard
+
+"@types/treeify@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@types/treeify@npm:1.0.0"
+  checksum: f7b82d91a4be51d5b93fb1e245ea71768e06a567daa1ff84fe075c3e62ce90f2703fa8258f0f093f92816416fe2f41c3177e5005114613adbdddabe2ddc3e593
   languageName: node
   linkType: hard
 
@@ -2684,6 +2709,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"indent-string@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "indent-string@npm:3.2.0"
+  checksum: 00d5200e3afc1ecfde7e82a28d14ce5e01ae5f07f883b5fdaa80146bb15854764f6a0e0ce5e41e30f377e25285139925adaf744b1754d83d69ab3852de7cd450
+  languageName: node
+  linkType: hard
+
 "indent-string@npm:^4.0.0":
   version: 4.0.0
   resolution: "indent-string@npm:4.0.0"
@@ -3828,6 +3860,7 @@ __metadata:
     "@oclif/dev-cli": ^1
     "@oclif/plugin-help": ^3
     "@oclif/test": ^1
+    "@tiagonapoli/oclif-plugin-spaced-commands": tiagonapoli/oclif-plugin-spaced-commands
     "@types/bn.js": ^5.1.0
     "@types/chai": ^4
     "@types/mocha": ^5
@@ -4523,6 +4556,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"treeify@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "treeify@npm:1.1.0"
+  checksum: 78db62f564d025ffd9ec0f89e9195ee343298db0eb2d54cd84bce2b7460d347a1d3ea14a75a7f04d3c45b87aa9eb4b0c8ecd7ab4fba9b456cf29c4c895f4fc1d
+  languageName: node
+  linkType: hard
+
 "ts-node@npm:^8":
   version: 8.10.2
   resolution: "ts-node@npm:8.10.2"
@@ -4543,7 +4583,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1, tslib@npm:^1.13.0, tslib@npm:^1.8.1, tslib@npm:^1.9.3":
+"tslib@npm:^1, tslib@npm:^1.0.0, tslib@npm:^1.13.0, tslib@npm:^1.8.1, tslib@npm:^1.9.3":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: f44fe7f216946b17d3e3074df3746372703cf24e9127b4c045511456e8e4bf25515fb0a1bb3937676cc305651c5d4fcb6377b0588a4c6a957e748c4c28905d17
