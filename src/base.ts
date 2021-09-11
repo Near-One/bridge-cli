@@ -37,25 +37,19 @@ export abstract class BridgeNoConfigCommand extends Command {
 
   async loadConfig(): Promise<void> {
     const selected = await Config.selectedConfig();
+    const that = this;
 
-    const result = selected.match({
-      some: (configPath) => {
-        this._config = Config.loadConfig(configPath);
+    if (selected.isSome()) {
+      that._config = await Config.loadConfig(selected.unwrap());
+      console.log(that.conf);
 
-        this._logger = new Logger({
-          minLevel: this.conf.global.logLevel as TLogLevelName
-        });
-        return true;
-      },
-      none: () => {
-        this.logger.error(
-          'Bridge not selected. Run `bridge use <bridge_id>`. Run `bridge list` to see available bridges.'
-        );
-        return false;
-      }
-    });
-
-    if (!result) {
+      that._logger = new Logger({
+        minLevel: that.conf.global.logLevel as TLogLevelName
+      });
+    } else {
+      that.logger.error(
+        'Bridge not selected. Run `bridge use <bridge_id>`. Run `bridge list` to see available bridges.'
+      );
       process.exit(1);
     }
   }

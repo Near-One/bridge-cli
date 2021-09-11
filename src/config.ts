@@ -76,7 +76,7 @@ export class Config extends GConfig {
   }
 
   static async loadConfig(path: string): Promise<Config> {
-    return new Config(Config.loadConfigRaw(path));
+    return new Config(await Config.loadConfigRaw(path));
   }
 
   /// Return path to the selected configuration path
