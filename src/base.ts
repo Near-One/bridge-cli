@@ -41,10 +41,9 @@ export abstract class BridgeNoConfigCommand extends Command {
 
     if (selected.isSome()) {
       that._config = await Config.loadConfig(selected.unwrap());
-      console.log(that.conf);
-
       that._logger = new Logger({
-        minLevel: that.conf.global.logLevel as TLogLevelName
+        minLevel: that.conf.global.logLevel as TLogLevelName,
+        displayFunctionName: false
       });
     } else {
       that.logger.error(

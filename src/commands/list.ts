@@ -2,6 +2,11 @@ import { BridgeNoConfigCommand } from '../base';
 import fetch from 'cross-fetch';
 import { Config } from '../config';
 
+// TODO (List all bridges that are installed locally)
+// TODO (Mark active bridge with different color)
+// TODO (Show version of each bridge + Newest version)
+// TODO (Command to update active bridge)
+
 const CONFIG_LIST =
   'https://api.github.com/repos/aurora-is-near/bridge-cli/contents/configuration';
 

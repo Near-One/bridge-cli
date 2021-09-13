@@ -36,10 +36,12 @@ export default class Use extends BridgeNoConfigCommand {
       );
 
       await fs.promises.writeFile(conf, data);
+      await conf.close();
     }
 
     const bridge = await fs.promises.open(join(CONFIG_PATH, 'bridge'), 'w');
 
     await fs.promises.writeFile(bridge, this.args.bridge_id);
+    await bridge.close();
   }
 }
