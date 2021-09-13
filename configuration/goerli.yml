@@ -1,6 +1,6 @@
 global:
     # Id of the bridge. This is used to identify the configuration
-    bridge_id: ropsten
+    bridge_id: goerli
     # Version of the data. Changes on any modification to the data on this file. Follows semver.
     version: 1.0.0
     # Version of the layout of the configuration. Changes if new fields are added.
@@ -19,7 +19,7 @@ near:
 ethereum:
     # URL of the ethereum RPC endpoint.
     # Consider some options like https://www.alchemy.com or https://infura.io or ganache for local networks
-    node_url: https://eth-ropsten.alchemyapi.io/v2/NgaS-DrHQdY3MOmv4ltO-P-f6XkC3TWP
+    node_url: https://eth-goerli.alchemyapi.io/v2/MkJO6eJh65_Cr51gEr6m4J6mEiQMAd6f
 
 contracts:
     ethereum:
@@ -34,7 +34,7 @@ contracts:
         # Prover for events created in Ethereum
         prover: prover.ropsten.testnet
         # ERC20 Token Factory
-        token_factory: f.ropsten.testnet
+        token_factory: factory.goerli.testnet
 
 near2eth:
     # Address of the account used to relay NEAR blocks to Ethereum

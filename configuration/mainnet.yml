@@ -5,13 +5,21 @@ global:
     version: 1.0.0
     # Version of the layout of the configuration. Changes if new fields are added.
     layout_version: 1
-    # URL of the ethereum RPC endpoint.
-    # Consider some options like https://www.alchemy.com or https://infura.io or ganache for local networks
-    eth_node_url: http://localhost:9090
-    # URL of the NEAR RPC endpoint
-    near_node_url: https://rpc.mainnet.near.org
     # Log level from tslog https://tslog.js.org/#/?id=log-level
     log_level: info
+
+near:
+    # Id of NEAR network
+    network_id: mainnet
+    # URL of the NEAR RPC endpoint
+    node_url: https://archival-rpc.mainnet.near.org/
+    # Indexer url (see https://github.com/near/near-indexer-for-explorer)
+    indexer: postgres://public_readonly:nearprotocol@104.199.89.51/mainnet_explorer
+
+ethereum:
+    # URL of the ethereum RPC endpoint.
+    # Consider some options like https://www.alchemy.com or https://infura.io or ganache for local networks
+    node_url: https://eth-mainnet.alchemyapi.io/v2/7eJdJimvQvgnf9XzAcHzD9qrQy0JyeeB
 
 contracts:
     ethereum:
@@ -25,6 +33,8 @@ contracts:
         client: client.bridge.near
         # Prover for events created in Ethereum
         prover: prover.bridge.near
+        # ERC20 Token Factory
+        token_factory: factory.bridge.near
 
 near2eth:
     # Address of the account used to relay NEAR blocks to Ethereum
