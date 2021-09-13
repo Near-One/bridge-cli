@@ -22,6 +22,28 @@ class NearExplorerURL {
     return `${this.url}/accounts/${accountId}`;
   }
 }
+class EtherscanExplorerURL {
+  url: string;
+
+  constructor(url: string) {
+    this.url = url;
+  }
+
+  put0x(hash: string) {
+    if (!hash.startsWith('0x')) {
+      hash = '0x' + hash;
+    }
+    return hash;
+  }
+
+  transaction(txId: string) {
+    return `${this.url}/tx/${this.put0x(txId)}`;
+  }
+
+  address(address: string) {
+    return `${this.url}/address/${this.put0x(address)}`;
+  }
+}
 
 export const CONFIG_PATH = join(homedir(), '.rainbow');
 export class Config extends GConfig {
@@ -53,9 +75,19 @@ export class Config extends GConfig {
   }
 
   get nearExplorer(): NearExplorerURL {
+    // TODO: Add NEAR Explorer URL in configuration
     return new NearExplorerURL(
       `https://explorer.${this.nearNetworkId}.near.org`
     );
+  }
+
+  get etherscan(): EtherscanExplorerURL {
+    // TODO: Add Etherscan Explorer URL in configuration
+    let url = `https://etherscan.io`;
+    if (this.global.bridgeId !== 'mainnet') {
+      url = `https://${this.global.bridgeId}.etherscan.io`;
+    }
+    return new EtherscanExplorerURL(url);
   }
 
   /// Return NEAR interface
