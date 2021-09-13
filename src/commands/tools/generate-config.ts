@@ -48,7 +48,7 @@ function toCamelCase(input: string) {
 
 export default class GenerateConfig extends BridgeCommand {
   static description =
-    'Generate config/base.ts file from yml file automatically';
+    'Generate config/base.ts file from yml file automatically. This is used to have automatically fully typed config file.';
 
   static flags = {
     ...BridgeCommand.flags
