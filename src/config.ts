@@ -4,8 +4,24 @@ import { homedir } from 'os';
 import GConfig from './config/base';
 import * as fs from 'fs';
 import * as YAML from 'yaml';
-import { dirname, join } from 'path';
+import { join } from 'path';
 import { Option, None, Some } from '@hqoss/monads';
+
+class NearExplorerURL {
+  url: string;
+
+  constructor(url: string) {
+    this.url = url;
+  }
+
+  transaction(txId: string) {
+    return `${this.url}/transactions/${txId}`;
+  }
+
+  account(accountId: string) {
+    return `${this.url}/accounts/${accountId}`;
+  }
+}
 
 export const CONFIG_PATH = join(homedir(), '.rainbow');
 export class Config extends GConfig {
@@ -22,7 +38,7 @@ export class Config extends GConfig {
   }
 
   get nearNodeUrl(): string {
-    return this.global.nearNodeUrl;
+    return this.near.nodeUrl;
   }
 
   get nearNetworkId(): string {
@@ -34,6 +50,12 @@ export class Config extends GConfig {
       default:
         return 'local';
     }
+  }
+
+  get nearExplorer(): NearExplorerURL {
+    return new NearExplorerURL(
+      `https://explorer.${this.nearNetworkId}.near.org`
+    );
   }
 
   /// Return NEAR interface
@@ -51,7 +73,7 @@ export class Config extends GConfig {
   get eth(): ethers.providers.Provider {
     if (this.ethProvider === undefined) {
       this.ethProvider = new ethers.providers.JsonRpcProvider(
-        this.global.ethNodeUrl
+        this.ethereum.nodeUrl
       );
     }
     return this.ethProvider;
