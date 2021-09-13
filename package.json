@@ -1,7 +1,7 @@
 {
   "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Aurora Labs @aurora-is-near",
   "bin": {
     "bridge": "./bin/run"
@@ -14,11 +14,15 @@
     "@oclif/plugin-help": "^3",
     "@tiagonapoli/oclif-plugin-spaced-commands": "tiagonapoli/oclif-plugin-spaced-commands",
     "@types/bn.js": "^5.1.0",
+    "borsh": "^0.5.0",
+    "bs58": "^4.0.1",
     "cross-fetch": "^3.1.4",
     "ethers": "^5.4.1",
-    "near-api-js": "^0.42.0",
+    "near-api-js": "near/near-api-js#f3a05fe52340d07a2a96f862c112e6b5885982f5",
+    "postgresql-client": "^1.18.3",
     "prom-client": "^13.1.0",
     "reflect-metadata": "^0.1.13",
+    "sha.js": "^2.4.11",
     "tslib": "^1",
     "tslint": "^6.1.3",
     "tslog": "^3.2.0",
@@ -27,9 +31,11 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
+    "@types/bs58": "^4.0.1",
     "@types/chai": "^4",
     "@types/mocha": "^5",
     "@types/node": "^10",
+    "@types/sha.js": "^2.4.0",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "chai": "^4",
@@ -73,7 +79,18 @@
     "plugins": [
       "@oclif/plugin-help",
       "@tiagonapoli/oclif-plugin-spaced-commands"
-    ]
+    ],
+    "topics": {
+      "factory": {
+        "description": "Manage token factory contract"
+      },
+      "tokens": {
+        "description": "Manage bridge ERC20 (NEP141) token contracts"
+      },
+      "tools": {
+        "description": "Extra tools"
+      }
+    }
   },
   "repository": "aurora-is-near/bridge-cli",
   "scripts": {
