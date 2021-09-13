@@ -21,7 +21,7 @@ $ npm install -g rainbow-bridge
 $ bridge COMMAND
 running command...
 $ bridge (-v|--version|version)
-rainbow-bridge/0.0.7 darwin-x64 node-v14.16.1
+rainbow-bridge/0.0.8 darwin-x64 node-v14.16.1
 $ bridge --help [COMMAND]
 USAGE
   $ bridge COMMAND
@@ -58,7 +58,7 @@ OPTIONS
   -t, --deploy   Pause deploy token
 ```
 
-_See code: [src/commands/factory/pause.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/factory/pause.ts)_
+_See code: [src/commands/factory/pause.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/factory/pause.ts)_
 
 ## `bridge factory:unpause`
 
@@ -75,7 +75,7 @@ OPTIONS
   -t, --deploy   Pause deploy token
 ```
 
-_See code: [src/commands/factory/unpause.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/factory/unpause.ts)_
+_See code: [src/commands/factory/unpause.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/factory/unpause.ts)_
 
 ## `bridge help [COMMAND]`
 
@@ -106,7 +106,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/list.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/list.ts)_
 
 ## `bridge monitor`
 
@@ -121,7 +121,7 @@ OPTIONS
   -l, --list  List information tracked
 ```
 
-_See code: [src/commands/monitor.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/monitor.ts)_
+_See code: [src/commands/monitor.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/monitor.ts)_
 
 ## `bridge tokens:list`
 
@@ -135,7 +135,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/tokens/list.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/tokens/list.ts)_
+_See code: [src/commands/tokens/list.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/tokens/list.ts)_
 
 ## `bridge tokens:set_metadata`
 
@@ -149,7 +149,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/tokens/set_metadata.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/tokens/set_metadata.ts)_
+_See code: [src/commands/tokens/set_metadata.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/tokens/set_metadata.ts)_
 
 ## `bridge tools:generate-config FILE`
 
@@ -163,7 +163,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/tools/generate-config.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/tools/generate-config.ts)_
+_See code: [src/commands/tools/generate-config.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/tools/generate-config.ts)_
 
 ## `bridge tools:migrate-icons TOKENS CONTRACT`
 
@@ -181,7 +181,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/tools/migrate-icons.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/tools/migrate-icons.ts)_
+_See code: [src/commands/tools/migrate-icons.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/tools/migrate-icons.ts)_
 
 ## `bridge use BRIDGE_ID`
 
@@ -195,5 +195,5 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/use.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.7/src/commands/use.ts)_
+_See code: [src/commands/use.ts](https://github.com/aurora-is-near/bridge-cli/blob/v0.0.8/src/commands/use.ts)_
 <!-- commandsstop -->

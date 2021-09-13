@@ -744,9 +744,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiagonapoli/oclif-plugin-spaced-commands@tiagonapoli/oclif-plugin-spaced-commands":
+"@tiagonapoli/oclif-plugin-spaced-commands@npm:^1.0.1":
   version: 1.0.1
-  resolution: "@tiagonapoli/oclif-plugin-spaced-commands@https://github.com/tiagonapoli/oclif-plugin-spaced-commands.git#commit=424cbeb64b03f50c6492dbb4b045d178ba4a0e27"
+  resolution: "@tiagonapoli/oclif-plugin-spaced-commands@npm:1.0.1"
   dependencies:
     "@oclif/command": ^1.0.0
     "@oclif/config": ^1.0.0
@@ -758,7 +758,7 @@ __metadata:
     treeify: ^1.1.0
     tslib: ^1.0.0
     wrap-ansi: ^4.0.0
-  checksum: 1d0b0fbace5e74e6c251cd0dd68cbe19e0dd68af4b468a654572e044d5cb654291c78238dfc42a0a19eb0fcf59e884d5bdeb463fe21aef015e45534fef151d92
+  checksum: af5d118de0871a6e33582792cba77c9bff859c48b3d674c09d1101410335f6ffef8b1ba61bbed6f33e7a105d8de9567d924a70c63e69872b1679158bc50db132
   languageName: node
   linkType: hard
 
@@ -3947,7 +3947,7 @@ __metadata:
     "@oclif/dev-cli": ^1
     "@oclif/plugin-help": ^3
     "@oclif/test": ^1
-    "@tiagonapoli/oclif-plugin-spaced-commands": tiagonapoli/oclif-plugin-spaced-commands
+    "@tiagonapoli/oclif-plugin-spaced-commands": ^1.0.1
     "@types/bn.js": ^5.1.0
     "@types/bs58": ^4.0.1
     "@types/chai": ^4
