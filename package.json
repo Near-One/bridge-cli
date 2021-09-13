@@ -1,7 +1,7 @@
 {
   "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Aurora Labs @aurora-is-near",
   "bin": {
     "bridge": "./bin/run"
@@ -94,7 +94,6 @@
   },
   "repository": "aurora-is-near/bridge-cli",
   "scripts": {
-    "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
