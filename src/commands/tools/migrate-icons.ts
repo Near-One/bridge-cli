@@ -49,14 +49,14 @@ export default class MigrateIcons extends BridgeCommand {
 
     // The key for each bridge token is the same as the key for the factory.
     // Load the key to use it later.
-    const key = await this.conf.keyStore.getKey(
+    const key = await this.conf.nearKeyStore.getKey(
       this.conf.near.networkId,
       this.conf.contracts.near.tokenFactory
     );
 
     for (let token of tokens) {
       // Verify contract requires migration (check metadata)
-      const targetContract = `${token}.${this.conf.contracts.near.tokenFactory}`;
+      const targetContract = this.conf.bridgeTokenAccountIdFromAddress(token);
 
       this.logger.info(`>>> ${targetContract}`);
 
