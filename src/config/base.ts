@@ -98,6 +98,11 @@ export class near5 extends BaseConfig {
     this.has('token_factory', 'string');
     return this.config.token_factory;
   }
+
+  get metadataToken(): string {
+    this.has('metadata_token', 'string');
+    return this.config.metadata_token;
+  }
 }
 export class contracts6 extends BaseConfig {
   get ethereum(): ethereum4 {

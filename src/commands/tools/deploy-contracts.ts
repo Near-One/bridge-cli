@@ -5,8 +5,8 @@ import * as bs58 from 'bs58';
 import * as fs from 'fs';
 import * as nearAPI from 'near-api-js';
 
-export default class MigrateIcons extends BridgeCommand {
-  static description = `Apply icon migration to all bridged tokens.`;
+export default class DeployContracts extends BridgeCommand {
+  static description = `Deploy contracts in batch`;
 
   static flags = {
     ...BridgeCommand.flags
@@ -25,7 +25,7 @@ export default class MigrateIcons extends BridgeCommand {
       name: 'contract',
       required: true,
       default: '',
-      description: 'New bridge token contract'
+      description: 'Binary contract path'
     }
   ];
 
@@ -33,9 +33,6 @@ export default class MigrateIcons extends BridgeCommand {
     // load tokens from file
     const content = await fs.promises.readFile(this.args.tokens);
     const tokens = content.toString('utf8').trim().split('\n');
-
-    const near = await this.conf.NEAR;
-    const account = await near.account(this.conf.contracts.near.tokenFactory);
 
     // load contract
     const contractBinary = await fs.promises.readFile(this.args.contract);
@@ -61,29 +58,9 @@ export default class MigrateIcons extends BridgeCommand {
       count += 1;
 
       // Verify contract requires migration (check metadata)
-      const targetContract = this.conf.bridgeTokenAccountIdFromAddress(token);
+      const targetContract = token;
 
       this.logger.info(`>>> ${targetContract} (${count}/${total})`);
-
-      let result;
-      let requiresMigration = false;
-
-      try {
-        result = await account.viewFunction(targetContract, 'ft_metadata');
-      } catch (e) {
-        requiresMigration = true;
-      }
-
-      if (
-        requiresMigration ||
-        result.icon ===
-          'https://near.org/wp-content/themes/near-19/assets/img/brand-icon.png'
-      ) {
-        this.logger.info('Migrating...');
-      } else {
-        this.logger.info('Already migrated');
-        continue;
-      }
 
       /// Set the key from the factory to sign tx on behalf of this account
       const keyStoreTmp = new keyStores.InMemoryKeyStore();
@@ -101,6 +78,8 @@ export default class MigrateIcons extends BridgeCommand {
       const tokenAccount = await nearTmp.account(targetContract);
       const state = await tokenAccount.state();
 
+      this.logger.info(`Current contract hash:`, state.code_hash);
+
       if (state.code_hash !== expected_contract_hash) {
         this.logger.info(`Deploying bridge token...`);
         const res = await tokenAccount.deployContract(contractBinary);
@@ -109,18 +88,6 @@ export default class MigrateIcons extends BridgeCommand {
           this.conf.nearExplorer.transaction(res.transaction.hash)
         );
       }
-
-      this.logger.info('Call migration method...');
-
-      const res = await tokenAccount.functionCall({
-        contractId: tokenAccount.accountId,
-        methodName: 'migrate_nep_148_add_icon',
-        args: {}
-      });
-
-      this.logger.info(
-        this.conf.nearExplorer.transaction(res.transaction.hash)
-      );
     }
   }
 }
