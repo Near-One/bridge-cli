@@ -1,6 +1,6 @@
 import { BridgeNoConfigCommand } from '../base';
 import fetch from 'cross-fetch';
-import { Config, CONFIG_PATH } from '../config';
+import { CONFIG_PATH } from '../config';
 import * as fs from 'fs';
 import { join } from 'path';
 

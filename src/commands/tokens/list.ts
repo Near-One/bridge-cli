@@ -56,7 +56,7 @@ export default class List extends BridgeCommand {
     }
 
     if (this.flags.near) {
-      const contract = `${token}.${this.conf.contracts.near.tokenFactory}`;
+      const contract = this.conf.bridgeTokenAccountIdFromAddress(token);
       row.push(this.conf.nearExplorer.account(contract));
     }
 

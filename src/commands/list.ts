@@ -20,7 +20,7 @@ export default class List extends BridgeNoConfigCommand {
   static args = [...BridgeNoConfigCommand.args];
 
   async run(): Promise<void> {
-    const selected = (await Config.selectedConfig()).unwrapOr('');
+    const selected = (await Config.selectedBridge()).unwrapOr('');
 
     (await listBridges()).forEach((bridge) => {
       if (bridge === selected) {

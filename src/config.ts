@@ -6,6 +6,8 @@ import * as fs from 'fs';
 import * as YAML from 'yaml';
 import { join } from 'path';
 import { Option, None, Some } from '@hqoss/monads';
+import { put0x, remove0x } from './utils/common';
+import { EthereumKey, EthereumKeyStore } from './ethKeyStore';
 
 class NearExplorerURL {
   url: string;
@@ -29,23 +31,19 @@ class EtherscanExplorerURL {
     this.url = url;
   }
 
-  put0x(hash: string) {
-    if (!hash.startsWith('0x')) {
-      hash = '0x' + hash;
-    }
-    return hash;
-  }
-
   transaction(txId: string) {
-    return `${this.url}/tx/${this.put0x(txId)}`;
+    return `${this.url}/tx/${put0x(txId)}`;
   }
 
   address(address: string) {
-    return `${this.url}/address/${this.put0x(address)}`;
+    return `${this.url}/address/${put0x(address)}`;
   }
 }
 
 export const CONFIG_PATH = join(homedir(), '.rainbow');
+
+export const SELECTED_ETHEREUM_ADDRESS_FILENAME = 'ethereum-address';
+
 export class Config extends GConfig {
   ethProvider?: ethers.providers.Provider;
 
@@ -53,25 +51,57 @@ export class Config extends GConfig {
     return join(homedir(), '.near-credentials');
   }
 
-  get keyStore(): nearAPI.keyStores.KeyStore {
+  get nearKeyStore(): nearAPI.keyStores.KeyStore {
     return new nearAPI.keyStores.UnencryptedFileSystemKeyStore(
       this.keyStorePath
     );
+  }
+
+  get ethKeyStore(): EthereumKeyStore {
+    return new EthereumKeyStore(join(homedir(), '.eth-credentials'));
   }
 
   get nearNodeUrl(): string {
     return this.near.nodeUrl;
   }
 
+  get bridgeDataPath(): string {
+    return join(CONFIG_PATH, this.global.bridgeId);
+  }
+
+  get selectedEthereumKeyFileName(): string {
+    return join(this.bridgeDataPath, SELECTED_ETHEREUM_ADDRESS_FILENAME);
+  }
+
+  get selectedEthereumKey(): Promise<Option<EthereumKey>> {
+    return fs.promises
+      .readFile(this.selectedEthereumKeyFileName)
+      .then(async (value) => {
+        const identifier = value.toString('utf8').replace('\n', '');
+        return Some(await this.ethKeyStore.getKey(identifier));
+      })
+      .catch((e) => {
+        return None;
+      });
+  }
+
+  // TODO: Add near network-id in configuration
   get nearNetworkId(): string {
     switch (this.global.bridgeId) {
       case 'mainnet':
         return 'mainnet';
       case 'ropsten':
         return 'testnet';
+      case 'goerli':
+        return 'testnet';
       default:
         return 'local';
     }
+  }
+
+  // TODO: Add ethereum network-id in configuration
+  get ethereumNetworkId(): string {
+    return this.global.bridgeId;
   }
 
   get nearExplorer(): NearExplorerURL {
@@ -90,13 +120,24 @@ export class Config extends GConfig {
     return new EtherscanExplorerURL(url);
   }
 
+  async ethereumSigner(): Promise<ethers.Wallet> {
+    const key = await this.selectedEthereumKey;
+
+    if (key.isNone()) {
+      console.log('Set ethereum key using `bridge eth keys use <KEY_ID>`');
+      process.exit(1);
+    }
+
+    return new ethers.Wallet(key.unwrap().privateKey, this.eth);
+  }
+
   /// Return NEAR interface
   get NEAR(): Promise<nearAPI.Near> {
     return nearAPI.connect({
       nodeUrl: this.nearNodeUrl,
       networkId: this.nearNetworkId,
       deps: {
-        keyStore: this.keyStore
+        keyStore: this.nearKeyStore
       }
     });
   }
@@ -133,22 +174,37 @@ export class Config extends GConfig {
     return new Config(await Config.loadConfigRaw(path));
   }
 
-  /// Return path to the selected configuration path
-  static async selectedConfig(): Promise<Option<string>> {
+  static async selectedBridge(): Promise<Option<string>> {
     if (!fs.existsSync(join(CONFIG_PATH, 'bridge'))) {
       return None;
     }
 
-    const content = (
-      await fs.promises.readFile(join(CONFIG_PATH, 'bridge'))
-    ).toString();
+    return Some(
+      (await fs.promises.readFile(join(CONFIG_PATH, 'bridge')))
+        .toString()
+        .replace('\n', '')
+    );
+  }
 
-    const configPath = join(CONFIG_PATH, content, 'config.yml');
+  /// Return path to the selected configuration path
+  static async selectedConfig(): Promise<Option<string>> {
+    const content = await Config.selectedBridge();
+
+    if (content.isNone()) {
+      return None;
+    }
+
+    const configPath = join(CONFIG_PATH, content.unwrap(), 'config.yml');
 
     if (!fs.existsSync(configPath)) {
       return None;
     }
 
     return Some(configPath);
+  }
+
+  bridgeTokenAccountIdFromAddress(address: string): string {
+    address = remove0x(address);
+    return `${address}.${this.contracts.near.tokenFactory}`;
   }
 }
