@@ -1,10 +1,10 @@
 global:
     # Id of the bridge. This is used to identify the configuration
     bridge_id: ropsten
-    # Version of the data. Changes on any modification to the data on this file. Follows semver.
-    version: 1.0.0
-    # Version of the layout of the configuration. Changes if new fields are added.
-    layout_version: 1
+    # Version of the data. Changes on any modification to the data on this file.
+    # Bump minor version if data content changes.
+    # Bump major version if data layout changes.
+    version: 2.0
     # Log level from tslog https://tslog.js.org/#/?id=log-level
     log_level: info
 
@@ -27,6 +27,8 @@ contracts:
         client: "0x4018820687bfbf222fabd2ee014f6dc325c64084"
         # Prover for receipts created in NEAR
         prover: "0xb3df48b0ea3e91b43226fb3c5eb335b7e3d76faa"
+        # Contract that emits metadata from ERC20 Tokens
+        metadata_emitter: "0x6745a345385f973b30c3bfb1cd74cd79f0f8f9fe"
 
     near:
         # Ethereum Light Client implementation in NEAR
