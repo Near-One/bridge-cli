@@ -1,7 +1,7 @@
 {
   "name": "rainbow-bridge",
   "description": "CLI to interact with Rainbow Bridge and connectors",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Aurora Labs @aurora-is-near",
   "bin": {
     "bridge": "./bin/run"
@@ -17,7 +17,7 @@
     "borsh": "^0.5.0",
     "bs58": "^4.0.1",
     "cross-fetch": "^3.1.4",
-    "ethers": "^5.4.1",
+    "ethers": "^5.4.6",
     "near-api-js": "near/near-api-js#f3a05fe52340d07a2a96f862c112e6b5885982f5",
     "postgresql-client": "^1.18.3",
     "prom-client": "^13.1.0",
