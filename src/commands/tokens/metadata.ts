@@ -77,7 +77,7 @@ export async function getMetadata(
   try {
     const result = await Promise.all(promises);
     return Ok(new Metadata(result[0], result[1], result[2]));
-  } catch (e: any) {
-    return Err(e.toString());
+  } catch (e) {
+    return Err((e as any).toString());
   }
 }
