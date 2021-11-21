@@ -38,7 +38,7 @@ contracts:
         # ERC20 Token Factory
         token_factory: f.ropsten.testnet
         # Metadata controller account id
-        metadata_token: controller.f.ropsten.testnet
+        metadata_controller: controller.f.ropsten.testnet
 
 near2eth:
     # Address of the account used to relay NEAR blocks to Ethereum

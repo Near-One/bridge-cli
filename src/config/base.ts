@@ -99,9 +99,9 @@ export class near5 extends BaseConfig {
     return this.config.token_factory;
   }
 
-  get metadataToken(): string {
-    this.has('metadata_token', 'string');
-    return this.config.metadata_token;
+  get metadataController(): string {
+    this.has('metadata_controller', 'string');
+    return this.config.metadata_controller;
   }
 }
 export class contracts6 extends BaseConfig {

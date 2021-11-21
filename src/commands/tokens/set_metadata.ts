@@ -25,7 +25,7 @@ export default class SetMetadata extends BridgeCommand {
 
   async run(): Promise<void> {
     const near = await this.conf.NEAR;
-    const factory = await near.account(this.conf.contracts.near.metadataToken);
+    const metadataController = await near.account(this.conf.contracts.near.metadataController);
 
     let tokens = [this.args.token];
 
@@ -58,7 +58,7 @@ export default class SetMetadata extends BridgeCommand {
       this.logger.info(metadata);
 
       this.logger.info('Submitting metadata to NEAR...');
-      const res = await factory.functionCall({
+      const res = await metadataController.functionCall({
         contractId: this.conf.contracts.near.tokenFactory,
         methodName: 'set_metadata',
         args: {

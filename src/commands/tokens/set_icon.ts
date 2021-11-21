@@ -19,7 +19,7 @@ export default class SetMetadata extends BridgeCommand {
 
   async run(): Promise<void> {
     const near = await this.conf.NEAR;
-    const metadata = await near.account(this.conf.contracts.near.metadataToken);
+    const metadataController = await near.account(this.conf.contracts.near.metadataController);
 
     let files = await fs.promises.readdir(this.args.tokens);
 
@@ -41,7 +41,7 @@ export default class SetMetadata extends BridgeCommand {
         const dataUrl = info.icon;
 
         this.logger.info('Submitting icon to NEAR...');
-        const res = await metadata.functionCall({
+        const res = await metadataController.functionCall({
           contractId: this.conf.contracts.near.tokenFactory,
           methodName: 'set_metadata',
           args: {
