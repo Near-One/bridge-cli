@@ -36,7 +36,7 @@ contracts:
         # ERC20 Token Factory
         token_factory: factory.bridge.near
         # Metadata controller account id
-        metadata_token: metadata.factory.bridge.near
+        metadata_controller: metadata.factory.bridge.near
 
 near2eth:
     # Address of the account used to relay NEAR blocks to Ethereum
